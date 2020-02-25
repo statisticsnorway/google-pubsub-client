@@ -106,4 +106,8 @@ public class RealPubSub implements PubSub {
                 .setCredentialsProvider(credentialsProvider)
                 .build();
     }
+
+    @Override
+    public void close() {
+    }
 }

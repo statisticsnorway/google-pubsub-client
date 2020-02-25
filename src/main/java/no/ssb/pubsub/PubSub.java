@@ -14,6 +14,9 @@ import com.google.pubsub.v1.Subscription;
 import com.google.pubsub.v1.Topic;
 
 public interface PubSub {
+
+    void close();
+
     TopicAdminClient getTopicAdminClient();
 
     SubscriptionAdminClient getSubscriptionAdminClient();

@@ -4,6 +4,7 @@ import com.google.api.gax.core.CredentialsProvider;
 import com.google.api.gax.core.NoCredentialsProvider;
 import com.google.api.gax.grpc.GrpcTransportChannel;
 import com.google.api.gax.rpc.FixedTransportChannelProvider;
+import com.google.api.gax.rpc.TransportChannel;
 import com.google.cloud.pubsub.v1.MessageReceiver;
 import com.google.cloud.pubsub.v1.Publisher;
 import com.google.cloud.pubsub.v1.Subscriber;
@@ -17,6 +18,7 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class EmulatorPubSub implements PubSub {
     final String host;
@@ -77,5 +79,21 @@ public class EmulatorPubSub implements PubSub {
                 .setChannelProvider(channelProvider)
                 .setCredentialsProvider(credentialsProvider)
                 .build();
+    }
+
+    @Override
+    public void close() {
+        try {
+            TransportChannel channel = channelProvider.getTransportChannel();
+            channel.shutdown();
+            if (!channel.awaitTermination(3, TimeUnit.SECONDS)) {
+                channel.shutdownNow();
+                if (!channel.awaitTermination(3, TimeUnit.SECONDS)) {
+                    throw new RuntimeException("Unable to close channel");
+                }
+            }
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
