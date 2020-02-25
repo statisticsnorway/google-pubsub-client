@@ -6,7 +6,7 @@ module no.ssb.gcloud.pubsub {
     requires com.google.auth.oauth2;
     requires com.google.auth;
     requires gax.grpc;
-    requires grpc.api;
+    requires io.grpc;
 
     exports no.ssb.pubsub;
 }
