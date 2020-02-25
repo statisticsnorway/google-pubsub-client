@@ -46,7 +46,7 @@ steps:
     when:
       status: [ success, failure ]
     depends_on:
-      - publish-maven-protobuf-api
+      - publish-maven
 
   # Rebuild cache if it has changed with this build
   - name: rebuild-cache
@@ -60,7 +60,7 @@ steps:
       mount:
         - .m2/repository
     depends_on:
-      - publish-maven-protobuf-api
+      - publish-maven
 
   # OPTIONAL: Flush the cache of old cache items (older than 14 days)
   - name: flush-cache
@@ -73,7 +73,7 @@ steps:
       flush: true
       flush_age: 14
     depends_on:
-      - publish-maven-protobuf-api
+      - publish-maven
 
 ---
 kind: secret
