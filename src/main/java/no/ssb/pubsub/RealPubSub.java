@@ -18,12 +18,13 @@ import com.google.pubsub.v1.ProjectTopicName;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
 public class RealPubSub implements PubSub {
 
     public static RealPubSub createWithServiceAccountKeyCredentials(String serviceAccountKeyPath) {
-        Path serviceAccountKeyFilePath = Path.of(serviceAccountKeyPath);
+        Path serviceAccountKeyFilePath = Paths.get(serviceAccountKeyPath);
         Credentials credentials;
         try {
             credentials = ServiceAccountCredentials.fromStream(
