@@ -62,7 +62,8 @@ public class EmulatorPubSub implements PubSub {
     }
 
     @Override
-    public Publisher getPublisher(ProjectTopicName projectTopicName) {
+    public Publisher getPublisher(String projectId, String subscriptionName) {
+        ProjectTopicName projectTopicName = ProjectTopicName.of(projectId, subscriptionName);
         try {
             return Publisher.newBuilder(projectTopicName)
                     .setChannelProvider(channelProvider)
@@ -74,7 +75,8 @@ public class EmulatorPubSub implements PubSub {
     }
 
     @Override
-    public Subscriber getSubscriber(ProjectSubscriptionName projectSubscriptionName, MessageReceiver messageReceiver) {
+    public Subscriber getSubscriber(String projectId, String subscriptionName, MessageReceiver messageReceiver) {
+        ProjectSubscriptionName projectSubscriptionName = ProjectSubscriptionName.of(projectId, subscriptionName);
         return Subscriber.newBuilder(projectSubscriptionName, messageReceiver)
                 .setChannelProvider(channelProvider)
                 .setCredentialsProvider(credentialsProvider)
@@ -95,5 +97,25 @@ public class EmulatorPubSub implements PubSub {
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public String getHost() {
+        return host;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public ManagedChannel getPubSubChannel() {
+        return pubSubChannel;
+    }
+
+    public FixedTransportChannelProvider getChannelProvider() {
+        return channelProvider;
+    }
+
+    public CredentialsProvider getCredentialsProvider() {
+        return credentialsProvider;
     }
 }

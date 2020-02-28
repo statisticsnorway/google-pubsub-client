@@ -91,7 +91,8 @@ public class RealPubSub implements PubSub {
     }
 
     @Override
-    public Publisher getPublisher(ProjectTopicName projectTopicName) {
+    public Publisher getPublisher(String projectId, String subscriptionName) {
+        ProjectTopicName projectTopicName = ProjectTopicName.of(projectId, subscriptionName);
         try {
             return Publisher.newBuilder(projectTopicName)
                     .setCredentialsProvider(credentialsProvider)
@@ -102,7 +103,8 @@ public class RealPubSub implements PubSub {
     }
 
     @Override
-    public Subscriber getSubscriber(ProjectSubscriptionName projectSubscriptionName, MessageReceiver messageReceiver) {
+    public Subscriber getSubscriber(String projectId, String subscriptionName, MessageReceiver messageReceiver) {
+        ProjectSubscriptionName projectSubscriptionName = ProjectSubscriptionName.of(projectId, subscriptionName);
         return Subscriber.newBuilder(projectSubscriptionName, messageReceiver)
                 .setCredentialsProvider(credentialsProvider)
                 .build();
