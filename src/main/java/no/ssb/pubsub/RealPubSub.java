@@ -111,6 +111,11 @@ public class RealPubSub implements PubSub {
     }
 
     @Override
+    public CredentialsProvider getCredentialsProvider() {
+        return credentialsProvider;
+    }
+
+    @Override
     public void close() {
     }
 }

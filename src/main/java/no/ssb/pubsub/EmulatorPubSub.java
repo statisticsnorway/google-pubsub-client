@@ -115,6 +115,7 @@ public class EmulatorPubSub implements PubSub {
         return channelProvider;
     }
 
+    @Override
     public CredentialsProvider getCredentialsProvider() {
         return credentialsProvider;
     }

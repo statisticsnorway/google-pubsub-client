@@ -1,5 +1,6 @@
 package no.ssb.pubsub;
 
+import com.google.api.gax.core.CredentialsProvider;
 import com.google.cloud.pubsub.v1.MessageReceiver;
 import com.google.cloud.pubsub.v1.Publisher;
 import com.google.cloud.pubsub.v1.Subscriber;
@@ -17,4 +18,6 @@ public interface PubSub {
     Publisher getPublisher(String projectId, String topic);
 
     Subscriber getSubscriber(String projectId, String subscriptionName, MessageReceiver messageReceiver);
+
+    CredentialsProvider getCredentialsProvider();
 }
