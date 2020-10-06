@@ -5,9 +5,9 @@ module no.ssb.gcloud.pubsub {
     requires proto.google.cloud.pubsub.v1;
     requires com.google.auth.oauth2;
     requires com.google.auth;
-    requires gax.grpc.and.proto.google.common.protos;
-    requires io.grpc;
     requires org.slf4j;
+    requires gax.grpc;
+    requires grpc.api;
 
     exports no.ssb.pubsub;
 }
