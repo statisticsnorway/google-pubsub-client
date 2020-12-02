@@ -39,22 +39,8 @@
         <dependency>
             <groupId>com.google.cloud</groupId>
             <artifactId>google-cloud-pubsub</artifactId>
-            <version>1.108.3</version>
+            <version>1.109.0</version>
             <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.annotation</groupId>
-                    <artifactId>javax.annotation-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jsr305</artifactId>
-                    <groupId>com.google.code.findbugs</groupId>
-                </exclusion>
-                <exclusion>
-                    <groupId>io.opencensus</groupId>
-                    <artifactId>opencensus-api</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 
