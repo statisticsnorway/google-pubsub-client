@@ -3,7 +3,7 @@
 
     <groupId>no.ssb.pubsub</groupId>
     <artifactId>google-pubsub-client</artifactId>
-    <version>0.9-SNAPSHOT</version>
+    <version>0.9</version>
     <name>${project.artifactId}</name>
 
     <repositories>
@@ -27,7 +27,7 @@
         <connection>scm:git:git://github.com/statisticsnorway/google-pubsub-client.git</connection>
         <developerConnection>scm:git:git@github.com:statisticsnorway/google-pubsub-client.git</developerConnection>
         <url>https://github.com/statisticsnorway/google-pubsub-client/tree/master</url>
-        <tag>HEAD</tag>
+        <tag>google-pubsub-client-0.9</tag>
     </scm>
 
     <dependencies>
